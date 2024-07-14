@@ -17,6 +17,9 @@
 		56809BE92C4226C300DF070D /* IllumiNoteUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56809BE82C4226C300DF070D /* IllumiNoteUITests.swift */; };
 		56809BEB2C4226C300DF070D /* IllumiNoteUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56809BEA2C4226C300DF070D /* IllumiNoteUITestsLaunchTests.swift */; };
 		56809BF92C42270D00DF070D /* BluetoothService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56809BF82C42270D00DF070D /* BluetoothService.swift */; };
+		56809BFD2C446B0300DF070D /* SongDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56809BFC2C446B0300DF070D /* SongDetailView.swift */; };
+		56809BFF2C446F4D00DF070D /* SessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56809BFE2C446F4D00DF070D /* SessionView.swift */; };
+		56809C032C44735500DF070D /* Example1.JSON in Resources */ = {isa = PBXBuildFile; fileRef = 56809C022C44735500DF070D /* Example1.JSON */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +53,9 @@
 		56809BE82C4226C300DF070D /* IllumiNoteUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IllumiNoteUITests.swift; sourceTree = "<group>"; };
 		56809BEA2C4226C300DF070D /* IllumiNoteUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IllumiNoteUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		56809BF82C42270D00DF070D /* BluetoothService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothService.swift; sourceTree = "<group>"; };
+		56809BFC2C446B0300DF070D /* SongDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongDetailView.swift; sourceTree = "<group>"; };
+		56809BFE2C446F4D00DF070D /* SessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionView.swift; sourceTree = "<group>"; };
+		56809C022C44735500DF070D /* Example1.JSON */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Example1.JSON; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,9 +106,10 @@
 		56809BC72C4226C000DF070D /* IllumiNote */ = {
 			isa = PBXGroup;
 			children = (
+				56809C002C4472F900DF070D /* Resources */,
+				56809BFB2C446AE400DF070D /* Views */,
+				56809BFA2C446ABD00DF070D /* App */,
 				56809BF72C4226D300DF070D /* Services */,
-				56809BC82C4226C000DF070D /* IllumiNoteApp.swift */,
-				56809BCA2C4226C000DF070D /* ContentView.swift */,
 				56809BCC2C4226C200DF070D /* Assets.xcassets */,
 				56809BD12C4226C200DF070D /* Persistence.swift */,
 				56809BD32C4226C200DF070D /* IllumiNote.xcdatamodeld */,
@@ -142,6 +149,40 @@
 				56809BF82C42270D00DF070D /* BluetoothService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		56809BFA2C446ABD00DF070D /* App */ = {
+			isa = PBXGroup;
+			children = (
+				56809BC82C4226C000DF070D /* IllumiNoteApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		56809BFB2C446AE400DF070D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				56809BFC2C446B0300DF070D /* SongDetailView.swift */,
+				56809BCA2C4226C000DF070D /* ContentView.swift */,
+				56809BFE2C446F4D00DF070D /* SessionView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		56809C002C4472F900DF070D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				56809C012C4472FF00DF070D /* SongInfo */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		56809C012C4472FF00DF070D /* SongInfo */ = {
+			isa = PBXGroup;
+			children = (
+				56809C022C44735500DF070D /* Example1.JSON */,
+			);
+			path = SongInfo;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -250,6 +291,7 @@
 			files = (
 				56809BD02C4226C200DF070D /* Preview Assets.xcassets in Resources */,
 				56809BCD2C4226C200DF070D /* Assets.xcassets in Resources */,
+				56809C032C44735500DF070D /* Example1.JSON in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,10 +316,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56809BFF2C446F4D00DF070D /* SessionView.swift in Sources */,
 				56809BD22C4226C200DF070D /* Persistence.swift in Sources */,
 				56809BD52C4226C200DF070D /* IllumiNote.xcdatamodeld in Sources */,
 				56809BCB2C4226C000DF070D /* ContentView.swift in Sources */,
 				56809BC92C4226C000DF070D /* IllumiNoteApp.swift in Sources */,
+				56809BFD2C446B0300DF070D /* SongDetailView.swift in Sources */,
 				56809BF92C42270D00DF070D /* BluetoothService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

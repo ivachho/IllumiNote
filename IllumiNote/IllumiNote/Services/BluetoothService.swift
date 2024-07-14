@@ -56,21 +56,27 @@ class BluetoothService: NSObject, ObservableObject, CBCentralManagerDelegate, CB
                 writeCharacteristic = characteristic
                 // Write data here or store the characteristic for later use
                 // You can send the JSON data after finding the characteristic
-                sendJSONData(to: peripheral)
+                //sendJSONData(to: peripheral)
             }
         }
     }
 
-    func sendJSONData(to peripheral: CBPeripheral) {
-        guard let writeCharacteristic = writeCharacteristic else { return }
-        let json: [String: Any] = ["key": "value"] // Your JSON data
-        do {
-            let jsonData = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
-            peripheral.writeValue(jsonData, for: writeCharacteristic, type: .withResponse)
-        } catch {
-            print("Failed to serialize JSON: \(error)")
+    func sendMIDIData(from jsonFileName: String) {
+            guard let peripheral = raspberryPiPeripheral, let writeCharacteristic = writeCharacteristic else { return }
+        
+        
+
+            if let url = Bundle.main.url(forResource: jsonFileName, withExtension: "json") {
+                do {
+                    let jsonData = try Data(contentsOf: url)
+                    peripheral.writeValue(jsonData, for: writeCharacteristic, type: .withResponse)
+                } catch {
+                    print("Failed to load JSON file: \(error)")
+                }
+            } else {
+                print("JSON file not found")
+            }
         }
-    }
 
     func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
         if let error = error {
