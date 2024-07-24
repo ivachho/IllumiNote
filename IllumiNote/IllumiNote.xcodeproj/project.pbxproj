@@ -20,6 +20,12 @@
 		56809BFD2C446B0300DF070D /* SongDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56809BFC2C446B0300DF070D /* SongDetailView.swift */; };
 		56809BFF2C446F4D00DF070D /* SessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56809BFE2C446F4D00DF070D /* SessionView.swift */; };
 		56809C032C44735500DF070D /* Example1.JSON in Resources */ = {isa = PBXBuildFile; fileRef = 56809C022C44735500DF070D /* Example1.JSON */; };
+		982610912C50BB4A00651EB3 /* colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 982610902C50BB4A00651EB3 /* colors.swift */; };
+		982610932C50BB8300651EB3 /* StartScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 982610922C50BB8300651EB3 /* StartScreen.swift */; };
+		982610952C50BBB600651EB3 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 982610942C50BBB600651EB3 /* HomeScreen.swift */; };
+		982610972C50D20E00651EB3 /* SongScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 982610962C50D20E00651EB3 /* SongScreen.swift */; };
+		982610992C50D42C00651EB3 /* HIstoryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 982610982C50D42C00651EB3 /* HIstoryScreen.swift */; };
+		9826109B2C50D7D000651EB3 /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9826109A2C50D7D000651EB3 /* SettingsScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +62,12 @@
 		56809BFC2C446B0300DF070D /* SongDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongDetailView.swift; sourceTree = "<group>"; };
 		56809BFE2C446F4D00DF070D /* SessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionView.swift; sourceTree = "<group>"; };
 		56809C022C44735500DF070D /* Example1.JSON */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Example1.JSON; sourceTree = "<group>"; };
+		982610902C50BB4A00651EB3 /* colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = colors.swift; sourceTree = "<group>"; };
+		982610922C50BB8300651EB3 /* StartScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreen.swift; sourceTree = "<group>"; };
+		982610942C50BBB600651EB3 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
+		982610962C50D20E00651EB3 /* SongScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongScreen.swift; sourceTree = "<group>"; };
+		982610982C50D42C00651EB3 /* HIstoryScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HIstoryScreen.swift; sourceTree = "<group>"; };
+		9826109A2C50D7D000651EB3 /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +177,12 @@
 				56809BFC2C446B0300DF070D /* SongDetailView.swift */,
 				56809BCA2C4226C000DF070D /* ContentView.swift */,
 				56809BFE2C446F4D00DF070D /* SessionView.swift */,
+				982610902C50BB4A00651EB3 /* colors.swift */,
+				982610922C50BB8300651EB3 /* StartScreen.swift */,
+				982610942C50BBB600651EB3 /* HomeScreen.swift */,
+				982610962C50D20E00651EB3 /* SongScreen.swift */,
+				982610982C50D42C00651EB3 /* HIstoryScreen.swift */,
+				9826109A2C50D7D000651EB3 /* SettingsScreen.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -317,9 +335,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				56809BFF2C446F4D00DF070D /* SessionView.swift in Sources */,
+				982610912C50BB4A00651EB3 /* colors.swift in Sources */,
 				56809BD22C4226C200DF070D /* Persistence.swift in Sources */,
 				56809BD52C4226C200DF070D /* IllumiNote.xcdatamodeld in Sources */,
+				982610972C50D20E00651EB3 /* SongScreen.swift in Sources */,
 				56809BCB2C4226C000DF070D /* ContentView.swift in Sources */,
+				982610932C50BB8300651EB3 /* StartScreen.swift in Sources */,
+				9826109B2C50D7D000651EB3 /* SettingsScreen.swift in Sources */,
+				982610952C50BBB600651EB3 /* HomeScreen.swift in Sources */,
+				982610992C50D42C00651EB3 /* HIstoryScreen.swift in Sources */,
 				56809BC92C4226C000DF070D /* IllumiNoteApp.swift in Sources */,
 				56809BFD2C446B0300DF070D /* SongDetailView.swift in Sources */,
 				56809BF92C42270D00DF070D /* BluetoothService.swift in Sources */,
