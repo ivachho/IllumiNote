@@ -14,12 +14,14 @@ struct PlayedSong: Identifiable, Hashable {
     let dateTimePlayed: Date
 }
 
+let playedSongs: [PlayedSong] = [
+    PlayedSong(title: "Mary Had a Little Lamb", image: "marylamb", dateTimePlayed: Date()),
+    PlayedSong(title: "Twinkle Twinkle Little Star", image: "twinklestar", dateTimePlayed: Date()),
+    PlayedSong(title: "Mary Had a Little Lamb", image: "marylamb", dateTimePlayed: Date())
+] // Sample data
+
 struct HIstoryScreen: View {
-    @State private var playedSongs: [PlayedSong] = [
-        PlayedSong(title: "Mary Had a Little Lamb", image: "marylamb", dateTimePlayed: Date()),
-        PlayedSong(title: "Twinkle Twinkle Little Star", image: "twinklestar", dateTimePlayed: Date()),
-        PlayedSong(title: "Mary Had a Little Lamb", image: "marylamb", dateTimePlayed: Date())
-    ] // Sample data
+    
     @State private var selectedSong: PlayedSong? = nil
 
     var body: some View {

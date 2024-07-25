@@ -34,15 +34,23 @@ struct HomeScreen: View {
                     .font(.title)
                     .foregroundColor(.darkColor)
                     .padding()
-                Button(action: {
-                    // Continue last session
-                }) {
+//                Button(action: {
+//                    // Continue last session
+//                }) {
+//                    Text("   Continue from last session            ")
+//                        .foregroundColor(.ivory)
+//                        .padding()
+//                        .background(Color.mistyBlue)
+//                        .cornerRadius(10)
+//                }
+                NavigationLink(destination: SongDetailView(song: mostRecentSong())) {
                     Text("   Continue from last session            ")
                         .foregroundColor(.ivory)
                         .padding()
                         .background(Color.mistyBlue)
                         .cornerRadius(10)
                 }
+            
                 .padding().frame(height: 50)
                 Text("New Songs                                ")
                     .font(.title)
@@ -144,6 +152,20 @@ struct HomeScreen: View {
             filteredSongs = songs.filter { $0.title.lowercased().contains(query.lowercased()) }
         }
     }
+    
+    
+    private func findSong(byTitle title: String) -> Song? {
+        return songs.first { $0.title == title }
+    }
+
+    private func mostRecentSong() -> Song {
+        guard let recentPlayedSong = playedSongs.first else {
+            // Handle the case where there are no played songs, maybe return a default song
+            return songs.first!
+        }
+        return findSong(byTitle: recentPlayedSong.title) ?? songs.first!
+    }
+
 }
 
 struct HomeScreen_Previews: PreviewProvider {
