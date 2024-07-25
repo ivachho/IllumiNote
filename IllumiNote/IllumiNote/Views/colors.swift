@@ -14,4 +14,6 @@ extension Color {
     static let lilac = Color(red: 225/255, green: 194/255, blue: 240/255)
     static let ivory = Color(red: 232/255, green: 232/255, blue: 229/255)
     static let darkColor = Color(red: 99/255, green: 52/255, blue: 124/255)
+//    static let darkColor = Color.indigo
+    
 }

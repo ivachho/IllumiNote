@@ -26,6 +26,9 @@
 		982610972C50D20E00651EB3 /* SongScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 982610962C50D20E00651EB3 /* SongScreen.swift */; };
 		982610992C50D42C00651EB3 /* HIstoryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 982610982C50D42C00651EB3 /* HIstoryScreen.swift */; };
 		9826109B2C50D7D000651EB3 /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9826109A2C50D7D000651EB3 /* SettingsScreen.swift */; };
+		9826109F2C51C88B00651EB3 /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9826109E2C51C88B00651EB3 /* FilterView.swift */; };
+		98C564A72C51E23E0067E25E /* ResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C564A62C51E23E0067E25E /* ResultsView.swift */; };
+		98C564A92C520EB90067E25E /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C564A82C520EB90067E25E /* Song.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +71,9 @@
 		982610962C50D20E00651EB3 /* SongScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongScreen.swift; sourceTree = "<group>"; };
 		982610982C50D42C00651EB3 /* HIstoryScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HIstoryScreen.swift; sourceTree = "<group>"; };
 		9826109A2C50D7D000651EB3 /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
+		9826109E2C51C88B00651EB3 /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
+		98C564A62C51E23E0067E25E /* ResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsView.swift; sourceTree = "<group>"; };
+		98C564A82C520EB90067E25E /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +189,9 @@
 				982610962C50D20E00651EB3 /* SongScreen.swift */,
 				982610982C50D42C00651EB3 /* HIstoryScreen.swift */,
 				9826109A2C50D7D000651EB3 /* SettingsScreen.swift */,
+				9826109E2C51C88B00651EB3 /* FilterView.swift */,
+				98C564A62C51E23E0067E25E /* ResultsView.swift */,
+				98C564A82C520EB90067E25E /* Song.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -334,6 +343,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9826109F2C51C88B00651EB3 /* FilterView.swift in Sources */,
 				56809BFF2C446F4D00DF070D /* SessionView.swift in Sources */,
 				982610912C50BB4A00651EB3 /* colors.swift in Sources */,
 				56809BD22C4226C200DF070D /* Persistence.swift in Sources */,
@@ -345,7 +355,9 @@
 				982610952C50BBB600651EB3 /* HomeScreen.swift in Sources */,
 				982610992C50D42C00651EB3 /* HIstoryScreen.swift in Sources */,
 				56809BC92C4226C000DF070D /* IllumiNoteApp.swift in Sources */,
+				98C564A92C520EB90067E25E /* Song.swift in Sources */,
 				56809BFD2C446B0300DF070D /* SongDetailView.swift in Sources */,
+				98C564A72C51E23E0067E25E /* ResultsView.swift in Sources */,
 				56809BF92C42270D00DF070D /* BluetoothService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

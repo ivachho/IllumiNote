@@ -7,49 +7,55 @@
 
 import SwiftUI
 
+struct PlayedSong: Identifiable, Hashable {
+    let id = UUID()
+    let title: String
+    let image: String // Add image name or URL
+    let dateTimePlayed: Date
+}
+
 struct HIstoryScreen: View {
+    @State private var playedSongs: [PlayedSong] = [
+        PlayedSong(title: "Song Title 1", image: "music.note", dateTimePlayed: Date()),
+        PlayedSong(title: "Song Title 2", image: "music.note", dateTimePlayed: Date()),
+        PlayedSong(title: "Song Title 3", image: "music.note", dateTimePlayed: Date())
+    ] // Sample data
+    @State private var selectedSong: PlayedSong? = nil
+
     var body: some View {
         VStack {
-//            HStack {
-//                Spacer()
-//
-//                Text("IllumiNote")
-//                    .font(.custom("Bradley Hand Bold", size: 20))
-//                    .foregroundColor(.ivory)
-//                    .shadow(color: .lilac, radius: 15, x: 0, y: 3)
-//                    .padding()
-//                Spacer().frame(height: 50)
-//                NavigationLink(destination: SettingsScreen()) {
-//                    Image(systemName: "line.horizontal.3")
-//                        .foregroundColor(.lilac)
-//                }
-//                
-//                .padding(.horizontal)
-//                Spacer()
-//                Spacer()
-//
-//
-//            }
             Spacer().frame(height: 50)
-            Text("Recently Played                    ")
+            Text("Recently Played")
                 .font(.title)
                 .foregroundColor(.ivory)
                 .padding()
             ScrollView(.vertical){
                 VStack {
-                    ForEach(0..<20) { _ in
+                    ForEach(playedSongs) { song in
                         Button(action: {
-                        }){
-                            RoundedRectangle(cornerRadius: 10)
-                                .fill(Color.mistyBlue)
-                                .frame(width: 350, height: 60)
+                            selectedSong = song
+                        }) {
+                            HStack {
+                                Image(systemName: song.image) // Use the image name
+                                    .resizable()
+                                    .frame(width: 40, height: 40)
+                                    .cornerRadius(10)
+                                Spacer().frame(width: 10)
+                                Text(song.title)
+                                    .foregroundColor(.ivory)
+                                Spacer()
+                                Text(DateFormatter.localizedString(from: song.dateTimePlayed, dateStyle: .short, timeStyle: .short))
+                                    .foregroundColor(.gray)
+                            }
+                            .padding()
+                            .background(RoundedRectangle(cornerRadius: 10).fill(Color.mistyBlue))
+                            .padding(.bottom, 5)
                         }
                     }
                 }
                 .padding()
-                
-
             }
+
             Spacer()
             Text("Bluetooth Connected")
                 .foregroundColor(.lilac)
@@ -80,6 +86,9 @@ struct HIstoryScreen: View {
         }
         .background(Color.darkColor)
         .edgesIgnoringSafeArea(.all)
+        .sheet(item: $selectedSong) { song in
+            ResultsPopup(selectedSong: $selectedSong)
+        }
     }
 }
 
