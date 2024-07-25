@@ -2,28 +2,14 @@
 //  SongScreen.swift
 //  IllumiNote
 //
-//  Created by Jessie Huang on 2024-07-23.
+//  Created by Jessie Huang on 2024-07-24.
 //
-import SwiftUI
 
-struct Song: Identifiable, Hashable {
-    let id = UUID()
-    let title: String
-    let difficulty: Int
-    let image: String // Add image name or URL
-}
+import SwiftUI
 
 struct SongScreen: View {
     @State private var searchText: String = ""
-    @State private var songs: [Song] = [
-        Song(title: "Song Title 1", difficulty: 1, image: "music.note"),
-        Song(title: "Song Title 2", difficulty: 1, image: "music.note"),
-        Song(title: "Song Title 3", difficulty: 2, image: "music.note"),
-        Song(title: "Song Title 1", difficulty: 2, image: "music.note"),
-        Song(title: "Song Title 2", difficulty: 2, image: "music.note"),
-        Song(title: "Song Title 3", difficulty: 3, image: "music.note")
-    ] // Sample data
-    @State private var filteredSongs: [Song] = []
+    @State private var filteredSongs: [Song] = songs
     @State private var likedSongs: Set<Song> = []
     @State private var isFilterPresented = false
     @State private var selectedDifficulty: String? = nil
@@ -31,36 +17,30 @@ struct SongScreen: View {
 
     var body: some View {
         VStack {
-//            Spacer().frame(height: 50)
-//            Text("Songs                                         ")
-//                .font(.title)
-//                .foregroundColor(.ivory)
-//                .padding()
             HStack {
                 Spacer()
-                Text("Songs                         ")
+                Text("Songs                     ")
                     .font(.title)
-                    .foregroundColor(.ivory)
+                    .foregroundColor(.darkColor)
                     .padding()
                 Spacer()
                 NavigationLink(destination: LikedSongsScreen(likedSongs: $likedSongs)) {
                     Image(systemName: "heart")
-                        .foregroundColor(.lilac)
+                        .foregroundColor(.mistyBlue)
                 }
                 Spacer()
                 Button(action: {
                     isFilterPresented.toggle()
                 }) {
                     Image(systemName: "line.horizontal.3")
-                        .foregroundColor(.lilac)
+                        .foregroundColor(.mistyBlue)
                 }
                 .sheet(isPresented: $isFilterPresented) {
-                    FilterView(isPresented: $isFilterPresented, selectedDifficulty: $selectedDifficulty, selectedTempo: $selectedTempo)
+                    FilterView(isPresented: $isFilterPresented, selectedDifficulty: $selectedDifficulty, selectedTempo: $selectedTempo, onApply: applyFilters)
                 }
                 Spacer()
             }
-//            Spacer().frame(height: 0)
-            // Search Bar
+            
             HStack {
                 TextField("     Search", text: $searchText)
                     .padding()
@@ -80,25 +60,26 @@ struct SongScreen: View {
                     .padding()
 
                 Button(action: {
-                    // Trigger search
                     filterSongs(query: searchText)
                 }) {
                     Image(systemName: "magnifyingglass")
-                        .foregroundColor(.lilac)
+                        .foregroundColor(.darkColor)
                 }
+                Spacer()
             }
             .padding()
 
-            Spacer().frame(height: 1)
-        
             ScrollView(.vertical) {
                 VStack {
                     ForEach(filteredSongs) { song in
                         HStack {
-                            Image(systemName: song.image) // Use the image name
-                                .resizable()
-                                .frame(width: 40, height: 40)
-                                .cornerRadius(10)
+                            NavigationLink(destination: SongDetailView(song: song)) {
+                                Image(song.imageName)
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 40, height: 40)
+                                    .cornerRadius(10)
+                            }
                             Spacer().frame(width: 10)
                             Button(action: {
                                 if likedSongs.contains(song) {
@@ -111,8 +92,11 @@ struct SongScreen: View {
                                     .foregroundColor(likedSongs.contains(song) ? .red : .lilac)
                             }
                             Spacer().frame(width: 10)
-                            Text(song.title)
-                                .foregroundColor(.ivory)
+                            NavigationLink(destination: SongDetailView(song: song)) {
+                                Text(song.title)
+                                    .foregroundColor(.ivory)
+                            }
+                            
                             Spacer()
                             HStack {
                                 ForEach(0..<3) { index in
@@ -155,10 +139,10 @@ struct SongScreen: View {
 
             }
             .padding()
-            .background(Color.ivory)
+            .background(Color.back)
+
         }
-        .background(Color.darkColor)
-//        .edgesIgnoringSafeArea(.all)
+        .background(Color.back)
         .onAppear {
             filteredSongs = songs
         }
@@ -181,12 +165,31 @@ struct SongScreen: View {
                 }
             }
         }
+        
+        if let tempo = selectedTempo {
+            result = result.filter { song in
+                switch tempo {
+                case "Slow":
+                    return song.tempo == "slow"
+                case "Medium":
+                    return song.tempo == "medium"
+                case "Fast":
+                    return song.tempo == "fast"
+                default:
+                    return true
+                }
+            }
+        }
 
         if !query.isEmpty {
             result = result.filter { $0.title.lowercased().contains(query.lowercased()) }
         }
         
         filteredSongs = result
+    }
+
+    private func applyFilters() {
+        filterSongs(query: searchText)
     }
 }
 
@@ -198,16 +201,19 @@ struct LikedSongsScreen: View {
             Spacer().frame(height: 50)
             Text("My Favourites")
                 .font(.title)
-                .foregroundColor(.ivory)
+                .foregroundColor(.darkColor)
                 .padding()
             ScrollView(.vertical){
                 VStack {
                     ForEach(Array(likedSongs)) { song in
                         HStack {
-                            Image(systemName: song.image) // Use the image name
-                                .resizable()
-                                .frame(width: 40, height: 40)
-                                .cornerRadius(10)
+                            NavigationLink(destination: SongDetailView(song: song)) {
+                                Image(song.imageName)
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 40, height: 40)
+                                    .cornerRadius(10)
+                            }
                             Spacer().frame(width: 10)
                             Button(action: {
                                 likedSongs.remove(song)
@@ -216,8 +222,10 @@ struct LikedSongsScreen: View {
                                     .foregroundColor(.red)
                             }
                             Spacer().frame(width: 10)
-                            Text(song.title)
-                                .foregroundColor(.ivory)
+                            NavigationLink(destination: SongDetailView(song: song)) {
+                                Text(song.title)
+                                    .foregroundColor(.ivory)
+                            }
                             Spacer()
                             HStack {
                                 ForEach(0..<3) { index in
@@ -259,12 +267,11 @@ struct LikedSongsScreen: View {
 
             }
             .padding()
-            .background(Color.ivory)
+            .background(Color.back)
         }
-        .background(Color.darkColor)
+        .background(Color.back)
         .edgesIgnoringSafeArea(.all)
     }
-    
 }
 
 struct SongScreen_Previews: PreviewProvider {
@@ -276,9 +283,9 @@ struct SongScreen_Previews: PreviewProvider {
 struct LikedSongsScreen_Previews: PreviewProvider {
     static var previews: some View {
         LikedSongsScreen(likedSongs: .constant([
-            Song(title: "Song Title 1", difficulty: 1, image: "music.note"),
-            Song(title: "Song Title 2", difficulty: 2, image: "music.note"),
-            Song(title: "Song Title 3", difficulty: 3, image: "music.note")
+            Song(title: "Mary Had a Little Lamb", difficulty: 1, imageName: "marylamb", composer: "Sarah Josepha Hale", duration: "1:30", bpm: 60, tempo: "slow"),
+            Song(title: "River Flows in You", difficulty: 2, imageName: "yiruma", composer: "Yiruma", duration: "3:00", bpm: 85, tempo: "medium"),
+            Song(title: "Clocks", difficulty: 3, imageName: "coldplay", composer: "Coldplay", duration: "4:00", bpm: 120, tempo: "fast")
         ]))
     }
 }

@@ -59,9 +59,9 @@ struct StartScreen: View {
 
             }
             .padding()
-            .background(Color.darkColor)
+            .background(Color.mistyBlue)
         }
-        .background(Color.darkColor)
+        .background(Color.mistyBlue)
         .edgesIgnoringSafeArea(.all)
     }
 }

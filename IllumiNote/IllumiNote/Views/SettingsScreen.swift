@@ -33,17 +33,17 @@ struct SettingsScreen: View {
             Spacer().frame(height: 50)
             Text("Settings                                     ")
                 .font(.title)
-                .foregroundColor(.ivory)
+                .foregroundColor(.darkColor)
                 .padding()
             ScrollView(.vertical){
                 VStack {
                     Text("Account                                                ")
                         .font(.title2)
-                        .foregroundColor(.ivory)
+                        .foregroundColor(.darkColor)
                         .padding()
                     Text("Bluetooth                                              ")
                         .font(.title2)
-                        .foregroundColor(.ivory)
+                        .foregroundColor(.darkColor)
                         .padding()
                 }
                 .padding()
@@ -55,27 +55,27 @@ struct SettingsScreen: View {
             HStack {
                 Spacer()
 
-//                NavigationLink(destination: SongScreen()) {
-//                    Image(systemName: "music.note")
-//                        .foregroundColor(.mistyBlue)
-//                }
-//                Spacer()
-//                NavigationLink(destination: HomeScreen()) {
-//                    Image(systemName: "house.fill")
-//                        .foregroundColor(.mistyBlue)
-//                }
-//                Spacer()
-//                NavigationLink(destination: HIstoryScreen()) {
-//                    Image(systemName: "clock")
-//                        .foregroundColor(.mistyBlue)
-//                }
-//                Spacer()
+                NavigationLink(destination: SongScreen()) {
+                    Image(systemName: "music.note")
+                        .foregroundColor(.mistyBlue)
+                }
+                Spacer()
+                NavigationLink(destination: HomeScreen()) {
+                    Image(systemName: "house.fill")
+                        .foregroundColor(.mistyBlue)
+                }
+                Spacer()
+                NavigationLink(destination: HIstoryScreen()) {
+                    Image(systemName: "clock")
+                        .foregroundColor(.mistyBlue)
+                }
+                Spacer()
 
             }
             .padding()
-            .background(Color.darkColor)
+            .background(Color.back)
         }
-        .background(Color.darkColor)
+        .background(Color.back)
         .edgesIgnoringSafeArea(.all)
     }
 }

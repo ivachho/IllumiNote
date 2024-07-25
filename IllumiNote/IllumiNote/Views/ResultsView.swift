@@ -10,7 +10,7 @@ import SwiftUI
 struct ResultsPopup: View {
     @Binding var selectedSong: PlayedSong?
 
-    @State private var noteAccuracy: Double = 0.8
+    @State private var noteAccuracy: Double = 0.9
     @State private var rhythmAccuracy: Double = 0.7
     @State private var tempoAccuracy: Double = 0.9
 
@@ -60,7 +60,7 @@ struct ResultsPopup: View {
                 
                 VStack(alignment: .leading) {
                     Text("Tempo Accuracy")
-                    Text("Target BPM: 120, Your BPM: 115")
+                    Text("Target BPM: 60, Your BPM: 65")
                         .font(.subheadline)
                         .foregroundColor(.gray)
                 }
@@ -72,7 +72,7 @@ struct ResultsPopup: View {
                 Text("Close")
                     .foregroundColor(.white)
                     .padding()
-                    .background(Color.lilac)
+                    .background(Color.mistyBlue)
                     .cornerRadius(10)
             }
             .padding(.bottom)

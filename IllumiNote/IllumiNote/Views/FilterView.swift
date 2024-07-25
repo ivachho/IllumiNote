@@ -11,16 +11,18 @@ struct FilterView: View {
     @Binding var isPresented: Bool
     @Binding var selectedDifficulty: String?
     @Binding var selectedTempo: String?
-
+    
     let difficulties = ["Easy", "Medium", "Hard"]
     let tempos = ["Slow", "Medium", "Fast"]
+    
+    var onApply: () -> Void // Callback for applying filters
 
     var body: some View {
         VStack(spacing: 20) {
-            Text("Filters")
+            Text("Filter")
                 .font(.headline)
                 .padding(.top)
-
+            
             Text("Difficulty")
                 .font(.subheadline)
             Picker("Difficulty", selection: $selectedDifficulty) {
@@ -30,7 +32,7 @@ struct FilterView: View {
                 }
             }
             .pickerStyle(SegmentedPickerStyle())
-
+            
             Text("Tempo")
                 .font(.subheadline)
             Picker("Tempo", selection: $selectedTempo) {
@@ -40,18 +42,19 @@ struct FilterView: View {
                 }
             }
             .pickerStyle(SegmentedPickerStyle())
-
+            
             Button(action: {
+                onApply() // Call the callback
                 isPresented = false
             }) {
                 Text("Apply")
                     .foregroundColor(.white)
                     .padding()
-                    .background(Color.lilac)
+                    .background(Color.mistyBlue)
                     .cornerRadius(10)
             }
             .padding(.bottom)
-
+            
             Spacer()
         }
         .padding()
@@ -68,6 +71,6 @@ struct FilterView_Previews: PreviewProvider {
     @State static var selectedTempo: String? = nil
 
     static var previews: some View {
-        FilterView(isPresented: $isPresented, selectedDifficulty: $selectedDifficulty, selectedTempo: $selectedTempo)
+        FilterView(isPresented: $isPresented, selectedDifficulty: $selectedDifficulty, selectedTempo: $selectedTempo, onApply: {})
     }
 }

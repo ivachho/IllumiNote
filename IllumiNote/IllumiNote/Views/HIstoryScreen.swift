@@ -16,9 +16,9 @@ struct PlayedSong: Identifiable, Hashable {
 
 struct HIstoryScreen: View {
     @State private var playedSongs: [PlayedSong] = [
-        PlayedSong(title: "Song Title 1", image: "music.note", dateTimePlayed: Date()),
-        PlayedSong(title: "Song Title 2", image: "music.note", dateTimePlayed: Date()),
-        PlayedSong(title: "Song Title 3", image: "music.note", dateTimePlayed: Date())
+        PlayedSong(title: "Mary Had a Little Lamb", image: "marylamb", dateTimePlayed: Date()),
+        PlayedSong(title: "Twinkle Twinkle Little Star", image: "twinklestar", dateTimePlayed: Date()),
+        PlayedSong(title: "Mary Had a Little Lamb", image: "marylamb", dateTimePlayed: Date())
     ] // Sample data
     @State private var selectedSong: PlayedSong? = nil
 
@@ -27,7 +27,7 @@ struct HIstoryScreen: View {
             Spacer().frame(height: 50)
             Text("Recently Played")
                 .font(.title)
-                .foregroundColor(.ivory)
+                .foregroundColor(.darkColor)
                 .padding()
             ScrollView(.vertical){
                 VStack {
@@ -36,7 +36,7 @@ struct HIstoryScreen: View {
                             selectedSong = song
                         }) {
                             HStack {
-                                Image(systemName: song.image) // Use the image name
+                                Image(song.image)
                                     .resizable()
                                     .frame(width: 40, height: 40)
                                     .cornerRadius(10)
@@ -45,7 +45,7 @@ struct HIstoryScreen: View {
                                     .foregroundColor(.ivory)
                                 Spacer()
                                 Text(DateFormatter.localizedString(from: song.dateTimePlayed, dateStyle: .short, timeStyle: .short))
-                                    .foregroundColor(.gray)
+                                    .foregroundColor(.lilac)
                             }
                             .padding()
                             .background(RoundedRectangle(cornerRadius: 10).fill(Color.mistyBlue))
@@ -82,9 +82,9 @@ struct HIstoryScreen: View {
 
             }
             .padding()
-            .background(Color.ivory)
+            .background(Color.back)
         }
-        .background(Color.darkColor)
+        .background(Color.back)
         .edgesIgnoringSafeArea(.all)
         .sheet(item: $selectedSong) { song in
             ResultsPopup(selectedSong: $selectedSong)
