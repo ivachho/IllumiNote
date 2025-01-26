@@ -119,16 +119,33 @@ struct HomeScreen: View {
             Spacer()
           
             // Bluetooth Button
+            
+            
             Button(action: {
                 if !bluetoothService.isConnected {
                     showAlert = true
                 }
             }) {
+
                 Text(bluetoothService.isConnected ? "Bluetooth Connected" : "Bluetooth Not Connected")
                     .foregroundColor(.ivory)
                     .padding()
                     .background(bluetoothService.isConnected ? Color.green : Color.red)
                     .cornerRadius(10)
+            }
+
+            .alert(isPresented: $showAlert) {
+
+                Alert(
+
+                    title: Text("Bluetooth Not Connected"),
+
+                    message: Text("Open device settings and connect Bluetooth."),
+
+                    dismissButton: .default(Text("OK"))
+
+                )
+
             }
             .padding()
                         
