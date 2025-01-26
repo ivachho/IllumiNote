@@ -68,7 +68,7 @@ struct HomeScreen: View {
                 ScrollView(.horizontal) {
                     HStack {
                         ForEach(filteredSongs.filter { $0.difficulty == 1 }) { song in
-                            NavigationLink(destination: SongDetailView(song: song)) {
+                            NavigationLink(destination: SongDetailView(song: song).environmentObject(bluetoothService)) {
                                 Image(song.imageName)
                                     .resizable()
                                     .aspectRatio(contentMode: .fill)
@@ -86,7 +86,7 @@ struct HomeScreen: View {
                 ScrollView(.horizontal) {
                     HStack {
                         ForEach(filteredSongs.filter { $0.difficulty == 2 }) { song in
-                            NavigationLink(destination: SongDetailView(song: song)) {
+                            NavigationLink(destination: SongDetailView(song: song).environmentObject(bluetoothService)) {
                                 Image(song.imageName)
                                     .resizable()
                                     .aspectRatio(contentMode: .fill)
@@ -104,7 +104,7 @@ struct HomeScreen: View {
                 ScrollView(.horizontal) {
                     HStack {
                         ForEach(filteredSongs.filter { $0.difficulty == 3 }) { song in
-                            NavigationLink(destination: SongDetailView(song: song)) {
+                            NavigationLink(destination: SongDetailView(song: song).environmentObject(bluetoothService)) {
                                 Image(song.imageName)
                                     .resizable()
                                     .aspectRatio(contentMode: .fill)
@@ -152,17 +152,17 @@ struct HomeScreen: View {
             Spacer()
             HStack {
                 Spacer()
-                NavigationLink(destination: SongScreen()) {
+                NavigationLink(destination: SongScreen().environmentObject(bluetoothService)) {
                     Image(systemName: "music.note")
                         .foregroundColor(.mistyBlue)
                 }
                 Spacer()
-                NavigationLink(destination: HomeScreen()) {
+                NavigationLink(destination: HomeScreen().environmentObject(bluetoothService)) {
                     Image(systemName: "house.fill")
                         .foregroundColor(.darkColor)
                 }
                 Spacer()
-                NavigationLink(destination: HIstoryScreen()) {
+                NavigationLink(destination: HIstoryScreen().environmentObject(bluetoothService)) {
                     Image(systemName: "clock")
                         .foregroundColor(.mistyBlue)
                 }

@@ -16,11 +16,19 @@ enum Mode: String {
 
 struct SongDetailView: View{
     @State private var selectedMode: Mode = .normal
+    @EnvironmentObject var bluetoothService: BluetoothService // Access the BluetoothService
+
 
     let song: Song
     
+    
+    let raspberryPiBluetoothAddress = "D8:3A:DD:D9:C2:C2"  // Replace with your Raspberry Pi's MAC address
+    let rfcommPort: Int32 = 1  // RFCOMM port 1
+
+    
+    
     var body: some View {
-        @EnvironmentObject var bluetoothService: BluetoothService
+//        @EnvironmentObject var bluetoothService: BluetoothService
         
         VStack{
             Spacer().frame(height: 100)
@@ -78,7 +86,7 @@ struct SongDetailView: View{
                         let modifiedTitle = song.title.replacingOccurrences(of: " ", with: "_")
                         bluetoothService.sendMIDIData(from: modifiedTitle) // Pass the modified title here
                     }) {
-                        NavigationLink(destination: SessionView(songTitle: song.title)) {
+                        NavigationLink(destination: SessionView(songTitle: song.title).environmentObject(bluetoothService)) {
                             Text("Start Session")
                                 .font(.title)
                                 .padding()

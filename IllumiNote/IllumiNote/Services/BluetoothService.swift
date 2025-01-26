@@ -76,6 +76,7 @@ class BluetoothService: NSObject, ObservableObject, CBCentralManagerDelegate, CB
                    centralManager.stopScan()
                    centralManager.connect(peripheral, options: nil)
                }
+
     }
 
 
@@ -105,14 +106,14 @@ class BluetoothService: NSObject, ObservableObject, CBCentralManagerDelegate, CB
         }
     }
 
-    func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
-        guard let characteristics = service.characteristics else { return }
-        for characteristic in characteristics {
-            if characteristic.properties.contains(.write) {
-                writeCharacteristic = characteristic
-            }
-        }
-    }
+//    func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
+//        guard let characteristics = service.characteristics else { return }
+//        for characteristic in characteristics {
+//            if characteristic.properties.contains(.write) {
+//                writeCharacteristic = characteristic
+//            }
+//        }
+//    }
 
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         if let error = error {
@@ -126,6 +127,37 @@ class BluetoothService: NSObject, ObservableObject, CBCentralManagerDelegate, CB
             receivedResults = true
         }
     }
+    
+    func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
+        guard let characteristics = service.characteristics else { return }
+        for characteristic in characteristics {
+            if characteristic.properties.contains(.write) {
+                writeCharacteristic = characteristic
+                print("Write characteristic found: \(characteristic.uuid)")
+            }
+        }
+    }
+
+
+//    func sendMIDIData(from jsonFileName: String) {
+//        guard let peripheral = raspberryPiPeripheral, let writeCharacteristic = writeCharacteristic else {
+//            print("Peripheral or characteristic is not ready.")
+//            return
+//        }
+//
+//        if let url = Bundle.main.url(forResource: jsonFileName, withExtension: "json") {
+//            do {
+//                let jsonData = try Data(contentsOf: url)
+//                print("Sending JSON data: \(String(data: jsonData, encoding: .utf8) ?? "Invalid JSON")")
+//                peripheral.writeValue(jsonData, for: writeCharacteristic, type: .withResponse)
+//            } catch {
+//                print("Failed to load JSON file: \(error)")
+//            }
+//        } else {
+//            print("JSON file not found.")
+//        }
+//    }
+
 
     func sendMIDIData(from jsonFileName: String) {
         guard let peripheral = raspberryPiPeripheral, let writeCharacteristic = writeCharacteristic else {
@@ -133,19 +165,32 @@ class BluetoothService: NSObject, ObservableObject, CBCentralManagerDelegate, CB
             return
         }
 
-        if let url = Bundle.main.url(forResource: jsonFileName, withExtension: "json") {
-            do {
-                let jsonData = try Data(contentsOf: url)
-                print("Sending JSON data: \(String(data: jsonData, encoding: .utf8) ?? "Invalid JSON")")
-                peripheral.writeValue(jsonData, for: writeCharacteristic, type: .withResponse)
-            } catch {
-                print("Failed to load JSON file: \(error)")
+        if isConnected {
+            if let url = Bundle.main.url(forResource: jsonFileName, withExtension: "json") {
+                do {
+                    let jsonData = try Data(contentsOf: url)
+                    print("Sending JSON data: \(String(data: jsonData, encoding: .utf8) ?? "Invalid JSON")")
+                    peripheral.writeValue(jsonData, for: writeCharacteristic, type: .withResponse)
+                } catch {
+                    print("Failed to load JSON file: \(error)")
+                }
+            } else {
+                print("JSON file not found.")
             }
         } else {
-            print("JSON file not found.")
+            print("Bluetooth is not connected.")
         }
     }
 
+
+//    func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
+//        if let error = error {
+//            print("Error writing value: \(error.localizedDescription)")
+//        } else {
+//            print("Successfully wrote value for characteristic \(characteristic.uuid)")
+//        }
+//    }
+    
     func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
         if let error = error {
             print("Error writing value: \(error.localizedDescription)")
@@ -153,4 +198,5 @@ class BluetoothService: NSObject, ObservableObject, CBCentralManagerDelegate, CB
             print("Successfully wrote value for characteristic \(characteristic.uuid)")
         }
     }
+
 }
