@@ -24,10 +24,13 @@ import SwiftUI
 
 @main
 struct IllumiNoteApp: App {
+    @StateObject private var bluetoothService = BluetoothService() // Create an instance of BluetoothService
+
     var body: some Scene {
         WindowGroup {
             NavigationView {
                 StartScreen()
+                    .environmentObject(bluetoothService) // Inject the BluetoothService into the environment
             }
         }
     }
