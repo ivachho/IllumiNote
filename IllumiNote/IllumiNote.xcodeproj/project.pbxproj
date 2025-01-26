@@ -27,6 +27,10 @@
 		982610992C50D42C00651EB3 /* HIstoryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 982610982C50D42C00651EB3 /* HIstoryScreen.swift */; };
 		9826109B2C50D7D000651EB3 /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9826109A2C50D7D000651EB3 /* SettingsScreen.swift */; };
 		9826109F2C51C88B00651EB3 /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9826109E2C51C88B00651EB3 /* FilterView.swift */; };
+		98316B9C2D3D7F6500E74C8D /* ParseJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98316B9B2D3D7F5500E74C8D /* ParseJson.swift */; };
+		98316BA02D3D808000E74C8D /* SheetMusicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98316B9F2D3D807800E74C8D /* SheetMusicView.swift */; };
+		98316BA62D3D93F600E74C8D /* Mary_Had_a_Little_Lamb.json in Resources */ = {isa = PBXBuildFile; fileRef = 98316BA52D3D93E900E74C8D /* Mary_Had_a_Little_Lamb.json */; };
+		983805C22D3D790C00C3A5F2 /* Mary_Had_a_Little_Lamb_Simple.json in Resources */ = {isa = PBXBuildFile; fileRef = 983805C12D3D790C00C3A5F2 /* Mary_Had_a_Little_Lamb_Simple.json */; };
 		98C564A72C51E23E0067E25E /* ResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C564A62C51E23E0067E25E /* ResultsView.swift */; };
 		98C564A92C520EB90067E25E /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C564A82C520EB90067E25E /* Song.swift */; };
 /* End PBXBuildFile section */
@@ -72,6 +76,11 @@
 		982610982C50D42C00651EB3 /* HIstoryScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HIstoryScreen.swift; sourceTree = "<group>"; };
 		9826109A2C50D7D000651EB3 /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
 		9826109E2C51C88B00651EB3 /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
+		98316B9B2D3D7F5500E74C8D /* ParseJson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseJson.swift; sourceTree = "<group>"; };
+		98316B9F2D3D807800E74C8D /* SheetMusicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetMusicView.swift; sourceTree = "<group>"; };
+		98316BA52D3D93E900E74C8D /* Mary_Had_a_Little_Lamb.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Mary_Had_a_Little_Lamb.json; sourceTree = "<group>"; };
+		983805C12D3D790C00C3A5F2 /* Mary_Had_a_Little_Lamb_Simple.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Mary_Had_a_Little_Lamb_Simple.json; sourceTree = "<group>"; };
+		988813432D46C63800E1C430 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		98C564A62C51E23E0067E25E /* ResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsView.swift; sourceTree = "<group>"; };
 		98C564A82C520EB90067E25E /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -124,6 +133,7 @@
 		56809BC72C4226C000DF070D /* IllumiNote */ = {
 			isa = PBXGroup;
 			children = (
+				988813432D46C63800E1C430 /* Info.plist */,
 				56809C002C4472F900DF070D /* Resources */,
 				56809BFB2C446AE400DF070D /* Views */,
 				56809BFA2C446ABD00DF070D /* App */,
@@ -165,6 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				56809BF82C42270D00DF070D /* BluetoothService.swift */,
+				98316B9B2D3D7F5500E74C8D /* ParseJson.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -185,6 +196,7 @@
 				56809BFE2C446F4D00DF070D /* SessionView.swift */,
 				982610902C50BB4A00651EB3 /* colors.swift */,
 				982610922C50BB8300651EB3 /* StartScreen.swift */,
+				98316B9F2D3D807800E74C8D /* SheetMusicView.swift */,
 				982610942C50BBB600651EB3 /* HomeScreen.swift */,
 				982610962C50D20E00651EB3 /* SongScreen.swift */,
 				982610982C50D42C00651EB3 /* HIstoryScreen.swift */,
@@ -199,6 +211,7 @@
 		56809C002C4472F900DF070D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				98316BA52D3D93E900E74C8D /* Mary_Had_a_Little_Lamb.json */,
 				56809C012C4472FF00DF070D /* SongInfo */,
 			);
 			path = Resources;
@@ -208,6 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				56809C022C44735500DF070D /* Example1.JSON */,
+				983805C12D3D790C00C3A5F2 /* Mary_Had_a_Little_Lamb_Simple.json */,
 			);
 			path = SongInfo;
 			sourceTree = "<group>";
@@ -316,9 +330,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				983805C22D3D790C00C3A5F2 /* Mary_Had_a_Little_Lamb_Simple.json in Resources */,
 				56809BD02C4226C200DF070D /* Preview Assets.xcassets in Resources */,
 				56809BCD2C4226C200DF070D /* Assets.xcassets in Resources */,
 				56809C032C44735500DF070D /* Example1.JSON in Resources */,
+				98316BA62D3D93F600E74C8D /* Mary_Had_a_Little_Lamb.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,10 +364,12 @@
 				982610912C50BB4A00651EB3 /* colors.swift in Sources */,
 				56809BD22C4226C200DF070D /* Persistence.swift in Sources */,
 				56809BD52C4226C200DF070D /* IllumiNote.xcdatamodeld in Sources */,
+				98316B9C2D3D7F6500E74C8D /* ParseJson.swift in Sources */,
 				982610972C50D20E00651EB3 /* SongScreen.swift in Sources */,
 				56809BCB2C4226C000DF070D /* ContentView.swift in Sources */,
 				982610932C50BB8300651EB3 /* StartScreen.swift in Sources */,
 				9826109B2C50D7D000651EB3 /* SettingsScreen.swift in Sources */,
+				98316BA02D3D808000E74C8D /* SheetMusicView.swift in Sources */,
 				982610952C50BBB600651EB3 /* HomeScreen.swift in Sources */,
 				982610992C50D42C00651EB3 /* HIstoryScreen.swift in Sources */,
 				56809BC92C4226C000DF070D /* IllumiNoteApp.swift in Sources */,
@@ -522,9 +540,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"IllumiNote/Preview Content\"";
-				DEVELOPMENT_TEAM = BRZ2SC98QR;
+				DEVELOPMENT_TEAM = 3768RG52V8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = IllumiNote/Info.plist;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "IllumiNote requires Bluetooth to connect to your Raspberry Pi and play music.";
+				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "IllumiNote requires Bluetooth to connect to your Raspberry Pi and play music.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -551,9 +572,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"IllumiNote/Preview Content\"";
-				DEVELOPMENT_TEAM = BRZ2SC98QR;
+				DEVELOPMENT_TEAM = 3768RG52V8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = IllumiNote/Info.plist;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "IllumiNote requires Bluetooth to connect to your Raspberry Pi and play music.";
+				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "IllumiNote requires Bluetooth to connect to your Raspberry Pi and play music.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

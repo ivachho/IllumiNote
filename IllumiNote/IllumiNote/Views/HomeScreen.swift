@@ -10,6 +10,9 @@ import SwiftUI
 struct HomeScreen: View {
     @State private var searchText: String = ""
     @State private var filteredSongs: [Song] = songs
+    @StateObject private var bluetoothService = BluetoothService()
+    @State private var isBluetoothConnected: Bool = false
+    @State private var showAlert: Bool = false
     
     var body: some View {
         VStack {
@@ -114,9 +117,21 @@ struct HomeScreen: View {
                 }
             }
             Spacer()
-            Text("Bluetooth Connected")
-                .foregroundColor(.darkColor)
-                .padding()
+          
+            // Bluetooth Button
+            Button(action: {
+                if !bluetoothService.isConnected {
+                    showAlert = true
+                }
+            }) {
+                Text(bluetoothService.isConnected ? "Bluetooth Connected" : "Bluetooth Not Connected")
+                    .foregroundColor(.ivory)
+                    .padding()
+                    .background(bluetoothService.isConnected ? Color.green : Color.red)
+                    .cornerRadius(10)
+            }
+            .padding()
+                        
             Spacer()
             HStack {
                 Spacer()

@@ -56,6 +56,7 @@ struct SongScreen: View {
                     )
                     .onChange(of: searchText) { newValue in
                         filterSongs(query: newValue)
+                
                     }
                     .padding()
 

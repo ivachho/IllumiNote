@@ -1,28 +1,81 @@
-//
-//  SessionView.swift
-//  IllumiNote
-//
-//  Created by Iva Chho on 7/14/24.
-//
-
-import Foundation
 import SwiftUI
+import Combine
 
 struct SessionView: View {
+    let songTitle: String
+    @State private var songData: JsonSong?
+    @State private var isResultsReady = false
+    @State private var cancellable: AnyCancellable? // Combine subscription
     @EnvironmentObject var bluetoothService: BluetoothService
+
     var body: some View {
-        VStack {
-            Text("Session in Progress")
-                .font(.largeTitle)
-                .padding()
-            Spacer()
+        NavigationView {
+            VStack {
+                if let songData = songData {
+                    Text("Session in Progress: \(songData.title)")
+                        .font(.largeTitle)
+                        .padding()
+
+                    Button("End Session") {
+                        // Simulate receiving results for testing
+                        bluetoothService.receivedResults = true
+                    }
+                    .padding()
+                } else {
+                    Text("Loading Song...")
+                        .font(.title)
+                        .padding()
+                }
+            }
+            .onAppear {
+                loadSongData()
+                observeResults()
+                sendDataToRaspberryPi() // Trigger the MIDI data transfer
+            }
+            .onDisappear {
+                cancellable?.cancel()
+            }
+            .navigationTitle("Session")
+            .navigationDestination(isPresented: $isResultsReady) {
+                ResultsPopup(selectedSong: .constant(nil))
+            }
         }
-        .navigationTitle("Session")
+    }
+
+    func loadSongData() {
+        let fileName = songTitle.replacingOccurrences(of: " ", with: "_")
+        if let url = Bundle.main.url(forResource: fileName, withExtension: "json") {
+            do {
+                let data = try Data(contentsOf: url)
+                let decoder = JSONDecoder()
+                songData = try decoder.decode(JsonSong.self, from: data)
+            } catch {
+                print("Error loading song data: \(error)")
+            }
+        } else {
+            print("Could not find the URL for the JSON file.")
+        }
+    }
+
+    func observeResults() {
+        cancellable = bluetoothService.$receivedResults
+            .receive(on: RunLoop.main)
+            .sink { isReceived in
+                isResultsReady = isReceived
+            }
+    }
+
+    func sendDataToRaspberryPi() {
+        let fileName = songTitle.replacingOccurrences(of: " ", with: "_")
+        bluetoothService.sendMIDIData(from: fileName)
     }
 }
 
 struct SessionView_Previews: PreviewProvider {
     static var previews: some View {
-        SessionView()
+        SessionView(songTitle: "Mary_Had_a_Little_Lamb")
+            .environmentObject(BluetoothService())
+            .previewLayout(.sizeThatFits)
+            .padding()
     }
 }

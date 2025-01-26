@@ -74,9 +74,11 @@ struct SongDetailView: View{
                     Spacer().frame(height: 1)
 
                     Button(action: {
-                        bluetoothService.sendMIDIData(from: "Example1")
+                        // Replace spaces with underscores
+                        let modifiedTitle = song.title.replacingOccurrences(of: " ", with: "_")
+                        bluetoothService.sendMIDIData(from: modifiedTitle) // Pass the modified title here
                     }) {
-                        NavigationLink(destination: SessionView()) {
+                        NavigationLink(destination: SessionView(songTitle: song.title)) {
                             Text("Start Session")
                                 .font(.title)
                                 .padding()
@@ -84,7 +86,6 @@ struct SongDetailView: View{
                                 .foregroundColor(.darkColor)
                                 .cornerRadius(10)
                         }
-                       
                     }
                     .padding()
 

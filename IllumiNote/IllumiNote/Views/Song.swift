@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct Song: Identifiable, Hashable {
+struct Song: Identifiable, Hashable, Equatable {
     let id = UUID()
     let title: String
     let difficulty: Int
