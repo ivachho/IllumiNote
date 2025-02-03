@@ -101,6 +101,7 @@ class BluetoothService: NSObject, ObservableObject, CBCentralManagerDelegate, CB
 
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
         guard let services = peripheral.services else { return }
+        print("Discovered services")
         for service in services {
             peripheral.discoverCharacteristics(nil, for: service)
         }

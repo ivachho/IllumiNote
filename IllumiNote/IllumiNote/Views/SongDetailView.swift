@@ -17,7 +17,7 @@ enum Mode: String {
 struct SongDetailView: View{
     @State private var selectedMode: Mode = .normal
     @EnvironmentObject var bluetoothService: BluetoothService // Access the BluetoothService
-
+    @EnvironmentObject var wifiService: WiFiService // Access the WifiService
 
     let song: Song
     
@@ -84,9 +84,11 @@ struct SongDetailView: View{
                     Button(action: {
                         // Replace spaces with underscores
                         let modifiedTitle = song.title.replacingOccurrences(of: " ", with: "_")
-                        bluetoothService.sendMIDIData(from: modifiedTitle) // Pass the modified title here
+                        //bluetoothService.sendMIDIData(from: modifiedTitle) // Pass the modified title here
+                        
+                        wifiService.sendMIDIData(from: modifiedTitle)
                     }) {
-                        NavigationLink(destination: SessionView(songTitle: song.title).environmentObject(bluetoothService)) {
+                        NavigationLink(destination: SessionView(songTitle: song.title).environmentObject(wifiService)) {
                             Text("Start Session")
                                 .font(.title)
                                 .padding()
@@ -138,6 +140,7 @@ struct SongDetailView_Previews: PreviewProvider {
         )
         
         SongDetailView(song: sampleSong)
-            .environmentObject(BluetoothService())
+            //.environmentObject(BluetoothService())
+            .environmentObject(WiFiService())
     }
 }

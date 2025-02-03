@@ -6,7 +6,7 @@ struct SessionView: View {
     @State private var songData: JsonSong?
     @State private var isResultsReady = false
     @State private var cancellable: AnyCancellable? // Combine subscription
-    @EnvironmentObject var bluetoothService: BluetoothService
+    @EnvironmentObject var wifiService: WiFiService // Use WiFiService instead of BluetoothService
 
     var body: some View {
         NavigationView {
@@ -18,7 +18,8 @@ struct SessionView: View {
 
                     Button("End Session") {
                         // Simulate receiving results for testing
-                        bluetoothService.receivedResults = true
+                        // Example for WiFi, modify as needed for actual logic
+                        isResultsReady = true
                     }
                     .padding()
                 } else {
@@ -29,11 +30,7 @@ struct SessionView: View {
             }
             .onAppear {
                 loadSongData()
-                observeResults()
                 sendDataToRaspberryPi() // Trigger the MIDI data transfer
-            }
-            .onDisappear {
-                cancellable?.cancel()
             }
             .navigationTitle("Session")
             .navigationDestination(isPresented: $isResultsReady) {
@@ -57,24 +54,16 @@ struct SessionView: View {
         }
     }
 
-    func observeResults() {
-        cancellable = bluetoothService.$receivedResults
-            .receive(on: RunLoop.main)
-            .sink { isReceived in
-                isResultsReady = isReceived
-            }
-    }
-
     func sendDataToRaspberryPi() {
         let fileName = songTitle.replacingOccurrences(of: " ", with: "_")
-        bluetoothService.sendMIDIData(from: fileName)
+        wifiService.sendMIDIData(from: fileName) // Use WiFiService to send data
     }
 }
 
 struct SessionView_Previews: PreviewProvider {
     static var previews: some View {
         SessionView(songTitle: "Mary_Had_a_Little_Lamb")
-            .environmentObject(BluetoothService())
+            .environmentObject(WiFiService()) // Use WiFiService here
             .previewLayout(.sizeThatFits)
             .padding()
     }

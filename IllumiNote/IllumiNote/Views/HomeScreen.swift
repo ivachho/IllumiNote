@@ -11,6 +11,8 @@ struct HomeScreen: View {
     @State private var searchText: String = ""
     @State private var filteredSongs: [Song] = songs
     @StateObject private var bluetoothService = BluetoothService()
+    @StateObject private var wifiService = WiFiService()
+    
     @State private var isBluetoothConnected: Bool = false
     @State private var showAlert: Bool = false
     
@@ -68,7 +70,7 @@ struct HomeScreen: View {
                 ScrollView(.horizontal) {
                     HStack {
                         ForEach(filteredSongs.filter { $0.difficulty == 1 }) { song in
-                            NavigationLink(destination: SongDetailView(song: song).environmentObject(bluetoothService)) {
+                            NavigationLink(destination: SongDetailView(song: song).environmentObject(bluetoothService).environmentObject(wifiService)) {
                                 Image(song.imageName)
                                     .resizable()
                                     .aspectRatio(contentMode: .fill)
@@ -86,7 +88,7 @@ struct HomeScreen: View {
                 ScrollView(.horizontal) {
                     HStack {
                         ForEach(filteredSongs.filter { $0.difficulty == 2 }) { song in
-                            NavigationLink(destination: SongDetailView(song: song).environmentObject(bluetoothService)) {
+                            NavigationLink(destination: SongDetailView(song: song).environmentObject(bluetoothService).environmentObject(wifiService)) {
                                 Image(song.imageName)
                                     .resizable()
                                     .aspectRatio(contentMode: .fill)
@@ -104,7 +106,7 @@ struct HomeScreen: View {
                 ScrollView(.horizontal) {
                     HStack {
                         ForEach(filteredSongs.filter { $0.difficulty == 3 }) { song in
-                            NavigationLink(destination: SongDetailView(song: song).environmentObject(bluetoothService)) {
+                            NavigationLink(destination: SongDetailView(song: song).environmentObject(bluetoothService).environmentObject(wifiService)) {
                                 Image(song.imageName)
                                     .resizable()
                                     .aspectRatio(contentMode: .fill)

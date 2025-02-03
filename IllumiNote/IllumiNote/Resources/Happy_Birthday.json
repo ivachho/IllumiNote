@@ -1,0 +1,108 @@
+
+{
+    "title": "Happy Birthday (Simple Version)",
+    "key": "C Major",
+    "tempo": 120,
+    "notes": [
+        {
+            "note": "C4",
+            "duration": 480
+        },
+        {
+            "note": "C4",
+            "duration": 480
+        },
+        {
+            "note": "D4",
+            "duration": 960
+        },
+        {
+            "note": "C4",
+            "duration": 960
+        },
+        {
+            "note": "F4",
+            "duration": 960
+        },
+        {
+            "note": "E4",
+            "duration": 1920
+        },
+        {
+            "note": "C4",
+            "duration": 480
+        },
+        {
+            "note": "C4",
+            "duration": 480
+        },
+        {
+            "note": "D4",
+            "duration": 960
+        },
+        {
+            "note": "C4",
+            "duration": 960
+        },
+        {
+            "note": "G4",
+            "duration": 960
+        },
+        {
+            "note": "F4",
+            "duration": 1920
+        },
+        {
+            "note": "C4",
+            "duration": 480
+        },
+        {
+            "note": "C4",
+            "duration": 480
+        },
+        {
+            "note": "C5",
+            "duration": 960
+        },
+        {
+            "note": "A4",
+            "duration": 960
+        },
+        {
+            "note": "F4",
+            "duration": 960
+        },
+        {
+            "note": "E4",
+            "duration": 960
+        },
+        {
+            "note": "D4",
+            "duration": 1920
+        },
+        {
+            "note": "A#4",
+            "duration": 480
+        },
+        {
+            "note": "A#4",
+            "duration": 480
+        },
+        {
+            "note": "A4",
+            "duration": 960
+        },
+        {
+            "note": "F4",
+            "duration": 960
+        },
+        {
+            "note": "G4",
+            "duration": 960
+        },
+        {
+            "note": "F4",
+            "duration": 1920
+        }
+    ]
+}
