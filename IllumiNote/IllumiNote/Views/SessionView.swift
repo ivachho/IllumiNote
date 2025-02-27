@@ -7,7 +7,14 @@ struct SessionView: View {
     @State private var isResultsReady = false
     @State private var cancellable: AnyCancellable? // Combine subscription
     @EnvironmentObject var wifiService: WiFiService // Use WiFiService instead of BluetoothService
-
+    @EnvironmentObject var feedbackViewService: FeedbackViewService
+    @State private var showFeedbackScreen = false
+//
+//        .onChange(of: feedbackViewModel.feedbackReceived) { newValue in
+//                  if newValue {
+//                      showFeedbackScreen = true
+//                  }
+//              }
     var body: some View {
         NavigationView {
             VStack {
@@ -19,6 +26,7 @@ struct SessionView: View {
                     Button("End Session") {
                         // Simulate receiving results for testing
                         // Example for WiFi, modify as needed for actual logic
+                        
                         isResultsReady = true
                     }
                     .padding()
@@ -33,10 +41,45 @@ struct SessionView: View {
                 sendDataToRaspberryPi() // Trigger the MIDI data transfer
             }
             .navigationTitle("Session")
-            .navigationDestination(isPresented: $isResultsReady) {
-                ResultsPopup(selectedSong: .constant(nil))
-            }
+//            .navigationDestination(isPresented: $isResultsReady) {
+//                ResultsPopup(selectedSong: .constant(nil))
+//            }
+            .fullScreenCover(isPresented: $showFeedbackScreen) {
+                            FeedbackView()
+                                .environmentObject(feedbackViewService)
+                                .onAppear {
+                                    print("FeedbackView appeared")
+                                }
+                        }
+                        .onReceive(feedbackViewService.objectWillChange) { _ in
+                            print("FeedbackViewService object will change")
+                        }
+                        .onReceive(feedbackViewService.$feedbackReceived) { value in
+                            print("Received new value for feedbackReceived: \(value)")
+                            if value {
+                                print("change detected to feedbackReceived...")
+                                showFeedbackScreen = true
+                            }
+                        }
         }
+        .onAppear {
+                    // Set up notification observers
+                    NotificationCenter.default.addObserver(
+                        forName: Notification.Name("FeedbackDataReady"),
+                        object: nil,
+                        queue: .main
+                    ) { notification in
+                        guard let userInfo = notification.userInfo,
+                              let expectedNotes = userInfo["expectedNotes"] as? [(String, Int)],
+                              let playedNotes = userInfo["playedNotes"] as? [(String, Int)] else {
+                            return
+                        }
+                        feedbackViewService.processFeedback(
+                            expectedNotes: expectedNotes,
+                            playedNotes: playedNotes
+                        )
+                    }
+                }
     }
 
     func loadSongData() {
